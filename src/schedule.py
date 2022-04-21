@@ -41,8 +41,7 @@ class Calendar(Services):
         self.today = datetime.date.today()
     
     def get_event(self, day, service):
-        start_date = datetime.datetime.combine(
-            day, datetime.datetime.min.time())
+        start_date = datetime.datetime.combine(day, datetime.datetime.min.time())
         end_date = datetime.datetime.combine(day, datetime.datetime.max.time())
         utc = pytz.UTC
         start_date = start_date.astimezone(utc)
