@@ -23,13 +23,15 @@ class PeterAssistant:
         try:
             with sr.Microphone() as source:
                 print("Speak now")
+               # self.listener.pause_threshold = 2
+                self.listener.adjust_for_ambient_noise(source)
                 voice = self.listener.listen(source)
                 command = self.listener.recognize_google(
                     voice, language='es-CO')
                 command = command.lower()
                 return command
         except:
-            pass
+            return ''
 
     def speak(self, speech):
         self.engine.say(speech)

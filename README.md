@@ -25,4 +25,5 @@
 * For that, you can execute the next comand:
 
   `pip install SpeechRecognition pyttsx3 PyAudio pytz google-auth google-api-python-client`
-* Once you have the code and the dependecies have been installed you can try the program by executing the file main.py which is in the src folder
+* Once you have the code and the dependecies have been installed you can try the program by executing the file main.py which is in the src folder.
+* When Peter ask you what do you want he to do tell him you want to know your next classes or you want to know your classes. It is fundamental that you mention the word "clase".
