@@ -1,2 +1,2 @@
-*.pickle
-*.pyc
+token.pickle
+src/__pycache__/
