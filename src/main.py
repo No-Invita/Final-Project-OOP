@@ -1,5 +1,5 @@
 
-from itertools import count
+import time
 from schedule import Calendar
 from peter_assistant import PeterAssistant
 # from Event import Event
@@ -7,15 +7,17 @@ from peter_assistant import PeterAssistant
 
 asistente = PeterAssistant()
 asistente.greet()
+calendario = Calendar()
 text = asistente.listen()
-str(text)
-if(text.count("clase") > 0 ):
-    calendario = Calendar()
-    service = calendario.getcalendarservices()
-    calendario.get_event(calendario.today, service)
+if(text.count("clase") > 0 and text.count("próxima") > 0 ):
+    calendario.startServices()
+    calendario.is_available()
 else:
-    asistente.speak("Disculpa no te he entendido")
-    asistente.speak(
-        "Puedo ayudarte a saber cual es tu proxima clase, solo debes pedirmelo")
+    print("Disculpa no te he entendido, por favor repite")
+#service = calendario.startServices()
+#calendario.is_available()
 
-print(text)
+# calendario.get_event(calendario.today, service)
+# asistente.speak("Disculpa no te he entendido")
+# asistente.speak(
+#         "Puedo ayudarte a saber cual es tu proxima clase, solo debes pedirmelo")

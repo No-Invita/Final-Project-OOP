@@ -23,8 +23,9 @@ class PeterAssistant:
         try:
             with sr.Microphone() as source:
                 print("Speak now")
-               # self.listener.pause_threshold = 2
+                self.listener.dynamic_energy_threshold = True
                 self.listener.adjust_for_ambient_noise(source)
+                #self.listener.pause_threshold = 8
                 voice = self.listener.listen(source)
                 command = self.listener.recognize_google(
                     voice, language='es-CO')
