@@ -1,5 +1,7 @@
 import datetime
 import pytz
+from schedule import Calendar
+calendar = Calendar()
 
 
 class Event:
@@ -8,12 +10,10 @@ class Event:
     summary = ""
     location = ""
     kind = ""
-
+    
     def __init__(self):
         pass
 
-    
-    def display() -> str:
-        pass
+    def display(self) :
 
-    
+       pass

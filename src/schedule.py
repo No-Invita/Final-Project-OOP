@@ -55,25 +55,30 @@ class Calendar(Services):
                                        singleEvents=True,
                                        orderBy='startTime').execute()
         events = result.get('items', [])
-
         if not events:
             print('No tienes eventos por ahora')
-        for event in events:
-            start = str(event['start'].get(
-                'dateTime', event['start'].get('date')).split('T')[1].split("-")[0])
-            end = str(event['end'].get('dateTime', event['end'].get(
-                'date')).split('T')[1].split("-")[0])
-            end_time = datetime.datetime.strptime(end, '%X').time()
-            if current < end_time:
-                print(start, end, event['summary'])
-                find = True
-                break
-            else:
-                find = False
+        else:
+            for event in events:
+                self.start = str(event['start'].get(
+                    'dateTime', event['start'].get('date')).split('T')[1].split("-")[0])
+                self.end = str(event['end'].get('dateTime', event['end'].get(
+                    'date')).split('T')[1].split("-")[0])
+                end_time = datetime.datetime.strptime(self.end, '%X').time()
+                if self.current < end_time:
+                    self.summary=event['summary']
+                    print(self.start, self.end, self.summary, self.summary)
+                    self.find = True
+                    break
+                else:
+                    self.find = False
+            
+            print(self.find)
 
-        if(not(find)):
-            pprint('No tienes eventos por ahora')
+        # if(not(find)):
+        #     print('No tienes eventos por ahora')
 
+
+    
     def is_available(self):
         if self.getcalendarservices != None:
             self.get_event(

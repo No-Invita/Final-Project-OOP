@@ -1,5 +1,7 @@
 from services import Services
+from event import Event
 
+event = Event()
 class Shower (Services):
     events = [""]
     blocks = [""]
@@ -10,8 +12,8 @@ class Shower (Services):
     def render (self):
         pass
 
-    def display_events():
-        pass
+    def display_events(self):
+        event.display()
 
     def dispaly_blocks():
         pass

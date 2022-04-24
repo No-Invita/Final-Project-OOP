@@ -1,0 +1,65 @@
+@startuml
+
+class PeterAssistant{
+    list: settings
+    void get_indications() 
+    void greet()
+    void init_service()
+    void listen()
+    void show_block()
+    void speak()
+}
+PeterAssistant o-- Service : Agregation
+abstract class Service{
+    list : settings
+    boolean : avaliable
+    boolean is_available()
+    void start_service()
+    void end_service()
+}
+class Calendar{
+    list: events
+    String get_date()
+    void  get_event()
+    list display_events()
+}
+Service  <|-- Calendar
+class Event{
+    string start 
+    string end 
+    string summary 
+    string location 
+    string kind 
+    string display()
+}
+Calendar "1" *--  "Many" Event:Composition
+class Map{
+    list: blocks
+    void get_user_location()
+    Block get_block()
+    void get_blocks()
+
+}
+Service <|-- Map
+class Block{
+    string name
+    string latitude
+    string longitude
+    string description
+    list: pictures
+    string display()
+    list get_location()
+}
+
+Map "1" *-- "many" Block : Composition
+class Shower{
+    list: events
+    list: blocks
+    void render()
+    void display_events()
+    void display_blocks()
+}
+Service <|-- Shower : Extension
+Shower o-- Event: Agregation 
+Shower o-- Block
+@enduml
