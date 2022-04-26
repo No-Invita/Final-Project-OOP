@@ -1,6 +1,6 @@
 # Peter assistant
 
-## What is Peter assistant
+## What is Peter assistant?
 
 Many first semester students find it difficult to learn their schedule or often forget what class or meeting they have at the moment and resort to search through their gallery with thousands of images that contains their schedule or open the Uninorte.co application that requires biometric authentication to view the schedule and that often like many other things that require biometric authentication access can become a bit complicated if you have your finger sores a little wet or the fingerprint sensor is not in good condition. In addition these students often do not know how to get to the room where they have their respective class and many of them are embarrassed to ask where they have to go and take a long time looking for the block where the room is.
 
