@@ -2,6 +2,7 @@ import abc
 
 
 class Services(abc.ABC):
+    
     settings = [""]
     avalible = False
 

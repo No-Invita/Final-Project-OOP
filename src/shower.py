@@ -3,6 +3,7 @@ from event import Event
 
 event = Event()
 class Shower (Services):
+    
     events = [""]
     blocks = [""]
 
