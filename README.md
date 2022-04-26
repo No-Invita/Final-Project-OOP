@@ -12,6 +12,7 @@ Peter assistant is a virtual assistant that you can ask what class or meeting yo
 - Authentication of users belonging to the Uninorte organization.
 - Access to the user's academic calendar.
 - The program must obey the user's orders, which will be given by means of a voice in Spanish.
+- Display on screen and announce to the user which class is coming up.
 
 ### Diagram UML
 
