@@ -3,7 +3,7 @@ from services import Services
 import pandas as pd
 import geocoder
 
-g = geocoder.ip('191.95.1.250')
+g = geocoder.ip('me')
 print(g.latlng)
 
 
