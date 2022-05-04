@@ -36,7 +36,7 @@ class Calendar(Services):
                 pickle.dump(creds, token)
 
         service = build('calendar', 'v3', credentials=creds)
-
+        self.service = service
         return service
 
     def get_date(self):
@@ -74,14 +74,13 @@ class Calendar(Services):
 
         if(not(self.find)):
             print('No tienes eventos por ahora')
+        return events
 
     def is_available(self):
         if self.getcalendarservices() != None:
-            self.get_event(
-                self.today, self.getcalendarservices())
-
+            return True
         else:
-            pprint("Lo siento no he podido obtener tus eventos")
+            return False
 
     def startServices(self):
         self.getcalendarservices()
