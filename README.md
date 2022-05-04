@@ -6,7 +6,6 @@ Many first semester students find it difficult to learn their schedule or often 
 
 Peter assistant is a virtual assistant that you can ask what class or meeting you have coming up next and it will tell you the time it starts, the time it ends, the name of the class and the location where it will take place. You can also see on a map how far or close the block you need to go to is to your location in real time. You will also be able to see images of the block so you can easily recognize it with your eyes.
 
-
 ## Funcionality requirements
 
 - Authentication of users belonging to the Uninorte organization.
@@ -35,3 +34,11 @@ Peter assistant is a virtual assistant that you can ask what class or meeting yo
   `pip install SpeechRecognition pyttsx3 PyAudio pytz google-auth google-api-python-client`
 * Once you have the code and the dependecies have been installed you can try the program by executing the file main.py which is in the src folder.
 * When Peter ask you what do you want he to do tell him you want to know your next classes or you want to know your classes. It is fundamental that you mention the word "clase".
+
+## Updates laboratory class
+
+* 04/05/22 :
+  * requirements.txt
+  * reordering code
+  * basic server created
+  * frontend interface develop started in the next [repository](https://github.com/No-Invita/Final-Project-OOP)
