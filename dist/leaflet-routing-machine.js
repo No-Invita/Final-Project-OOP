@@ -15860,7 +15860,7 @@ module.exports={
 			fitSelectedRoutes: 'smart',
 			routeLine: function(route, options) { return new Line(route, options); },
 			autoRoute: true,
-			routeWhileDragging: false,
+			routeWhileDragging: true,
 			routeDragInterval: 500,
 			waypointMode: 'connect',
 			showAlternatives: false,
@@ -17047,14 +17047,14 @@ module.exports = L.Routing = {
 			return j;
 		},
 
-		_onLineTouched: function(e) {
-			var afterIndex = this._findNearestWpBefore(this._findClosestRoutePoint(e.latlng));
-			this.fire('linetouched', {
-				afterIndex: afterIndex,
-				latlng: e.latlng
-			});
-			L.DomEvent.stop(e);
-		},
+		// _onLineTouched: function(e) {
+		// 	var afterIndex = this._findNearestWpBefore(this._findClosestRoutePoint(e.latlng));
+		// 	this.fire('linetouched', {
+		// 		afterIndex: afterIndex,
+		// 		latlng: e.latlng
+		// 	});
+		// 	L.DomEvent.stop(e);
+		// },
 
 		_getWaypointIndices: function() {
 			if (!this._wpIndices) {
@@ -18275,7 +18275,7 @@ module.exports = L.Routing = {
 				{color: 'white', opacity: 0.8, weight: 6},
 				{color: 'red', opacity: 1, weight: 2, dashArray: '7,12'}
 			],
-			draggableWaypoints: true,
+			//draggableWaypoints: true,
 			routeWhileDragging: false,
 			addWaypoints: true,
 			reverseWaypoints: false,
