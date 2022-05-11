@@ -40,8 +40,8 @@ def get_location():
     print("haciendo post")
     print(request.json)
 
-    with open('src/data/location.json', 'w') as location:
-        location.write(str(request.json).replace("'", '"'))
+    with open('src/data/location.js', 'w') as location:
+        location.write("const data="+str(request.json).replace("'", '"'))
 
     return jsonify({"response": "200"})
 
