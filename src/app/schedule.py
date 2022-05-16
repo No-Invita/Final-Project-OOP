@@ -17,6 +17,7 @@ class Calendar(Services):
 
     def __init__(self):
         self.get_date()
+        self.find = False
 
     def getcalendarservices(self):
 
@@ -65,15 +66,14 @@ class Calendar(Services):
                     'date')).split('T')[1].split("-")[0])
                 end_time = datetime.datetime.strptime(self.end, '%X').time()
                 if self.current_time < end_time:
-                    self.summary=event['summary']
-                    print(self.start, self.end, self.summary, event['location'])
+                    self.summary = event['summary']
+                    print(self.start, self.end,
+                          self.summary)
                     self.find = True
                     break
                 else:
                     self.find = False
 
-        if(not(self.find)):
-            print('No tienes eventos por ahora')
         return events
 
     def is_available(self):
