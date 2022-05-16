@@ -1,5 +1,5 @@
 from src.app.schedule import Calendar
-from peter_assistant import PeterAssistant
+from src.app.peter_assistant import PeterAssistant
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json

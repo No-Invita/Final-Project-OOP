@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport import requests
 import pytz
-from services import Services
+from src.app.services import Services
 
 
 class Calendar(Services):
