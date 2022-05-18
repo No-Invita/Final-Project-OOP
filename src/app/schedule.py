@@ -6,6 +6,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport import requests
 import pytz
+# from services import Services
 from src.app.services import Services
 
 
@@ -59,22 +60,30 @@ class Calendar(Services):
         if not events:
             print('No tienes eventos por ahora')
         else:
+            clases = []
             for event in events:
                 self.start = str(event['start'].get(
                     'dateTime', event['start'].get('date')).split('T')[1].split("-")[0])
                 self.end = str(event['end'].get('dateTime', event['end'].get(
                     'date')).split('T')[1].split("-")[0])
                 end_time = datetime.datetime.strptime(self.end, '%X').time()
+                clase = {
+                    'end': self.end,
+                    'start': self.start,
+                    'summary': str(event['summary']),
+                    'location': str(event['location']),
+                    'description': str(event['description']),
+                }
+                clases.append(clase)
                 if self.current_time < end_time:
                     self.summary = event['summary']
                     print(self.start, self.end,
                           self.summary)
                     self.find = True
-                    break
                 else:
                     self.find = False
 
-        return events
+        return clases
 
     def is_available(self):
         if self.getcalendarservices() != None:
