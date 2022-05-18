@@ -1,8 +1,11 @@
-from src.app.schedule import Calendar
-from src.app.peter_assistant import PeterAssistant
+# from src.app.schedule import Calendar
+from schedule import Calendar
+from peter_assistant import PeterAssistant
+# from src.app.peter_assistant import PeterAssistant
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
+import csv
 
 # from event import Event
 
@@ -32,6 +35,35 @@ def index():
     return jsonify(events)
 
 
+@app.route('/destination', methods=['POST'])
+def destination():
+    print("haciendo post")
+    print(request.json)
+    data = request.json
+    place = data['destination']
+    id = ''
+    go = ''
+    cords = {}
+    if 'bloq' in place.lower():
+        print('no es el bloque i')
+        id = place[len(place)-1]
+    else:
+        print('es el bloque i')
+        id = place[len(place)-2] + place[len(place)-1]
+    print(id)
+    with open('src/resources/data/csvfile.csv', newline='') as File:
+        reader = csv.reader(File)
+        for row in reader:
+            if ("Bloque " + id).lower() in row[0].lower():
+                print(row)
+                cords.update({"latitude": row[1], "longitude": row[2]})
+                go = row
+    with open('src/data/destination.json', 'w') as destination:
+        destination.write(
+            str({str(request.json).replace("'", '"'), str(cords)}))
+    return jsonify({"response": "200", "message": "Quieres ir al bloque " + id, "bloque": go, "cords": cords})
+
+
 @app.route('/location', methods=["POST"])
 def get_location():
     print("haciendo post")
@@ -45,10 +77,14 @@ def get_location():
 
 @app.route('/location')
 def location():
+    start = ''
+    end = ''
     with open('src/data/location.json', 'r') as data:
-        datas = json.load(data)
-        print(datas)
-        return jsonify({"response": "200", "location": (datas)})
+        start = json.load(data)
+    with open('src/data/destination.json', 'r')as destination:
+        end = json.load(destination)
+
+    return jsonify({"response": "200", "location": (start), "destination": (end)})
 
 
 if __name__ == '__main__':
