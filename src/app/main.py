@@ -1,7 +1,7 @@
-# from src.app.schedule import Calendar
-from schedule import Calendar
-from peter_assistant import PeterAssistant
-# from src.app.peter_assistant import PeterAssistant
+from src.app.schedule import Calendar
+# from schedule import Calendar
+# from peter_assistant import PeterAssistant
+from src.app.peter_assistant import PeterAssistant
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
@@ -35,7 +35,32 @@ def index():
     return jsonify(events)
 
 
-@app.route('/destination', methods=['POST'])
+@app.route('/destination')
+def getdestination():
+    print(request.json)
+    data = request.json
+    place = data['destination']
+    id = ''
+    go = ''
+    cords = {}
+    if 'bloq' in place.lower():
+        print('no es el bloque i')
+        id = place[len(place)-1]
+    else:
+        print('es el bloque i')
+        id = place[len(place)-2] + place[len(place)-1]
+    with open('src/resources/data/csvfile.csv', newline='') as File:
+        reader = csv.reader(File)
+        for row in reader:
+            if ("Bloque " + id).lower() in row[0].lower():
+                print(row)
+                cords.update({"latitude": row[1], "longitude": row[2]})
+                go = row
+
+    return jsonify({"response": "200", "message": "Quieres ir al bloque " + id, "bloque": go, "cords": cords})
+
+
+@ app.route('/destination', methods=['POST'])
 def destination():
     print("haciendo post")
     print(request.json)
@@ -44,6 +69,7 @@ def destination():
     id = ''
     go = ''
     cords = {}
+    destination = ''
     if 'bloq' in place.lower():
         print('no es el bloque i')
         id = place[len(place)-1]
@@ -59,12 +85,11 @@ def destination():
                 cords.update({"latitude": row[1], "longitude": row[2]})
                 go = row
     with open('src/data/destination.json', 'w') as destination:
-        destination.write(
-            str({str(request.json).replace("'", '"'), str(cords)}))
+        json.dump(cords, destination)
     return jsonify({"response": "200", "message": "Quieres ir al bloque " + id, "bloque": go, "cords": cords})
 
 
-@app.route('/location', methods=["POST"])
+@ app.route('/location', methods=["POST"])
 def get_location():
     print("haciendo post")
     print(request.json)
@@ -75,7 +100,7 @@ def get_location():
     return jsonify({"response": "200"})
 
 
-@app.route('/location')
+@ app.route('/location')
 def location():
     start = ''
     end = ''

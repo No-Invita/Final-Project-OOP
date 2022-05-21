@@ -57,10 +57,10 @@ class Calendar(Services):
                                        singleEvents=True,
                                        orderBy='startTime').execute()
         self.result = events = result.get('items', [])
+        clases = []
         if not events:
             print('No tienes eventos por ahora')
         else:
-            clases = []
             for event in events:
                 self.start = str(event['start'].get(
                     'dateTime', event['start'].get('date')).split('T')[1].split("-")[0])
