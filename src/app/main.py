@@ -1,11 +1,12 @@
 from src.app.schedule import Calendar
+from src.app.peter_assistant import PeterAssistant
 # from schedule import Calendar
 # from peter_assistant import PeterAssistant
-from src.app.peter_assistant import PeterAssistant
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 import csv
+
 
 # from event import Event
 
@@ -46,6 +47,9 @@ def getdestination():
     if 'bloq' in place.lower():
         print('no es el bloque i')
         id = place[len(place)-1]
+        if 'bloqj1' == place.lower():
+            print('es el bloque j')
+            id = place[len(place) - 2]
     else:
         print('es el bloque i')
         id = place[len(place)-2] + place[len(place)-1]
@@ -73,6 +77,10 @@ def destination():
     if 'bloq' in place.lower():
         print('no es el bloque i')
         id = place[len(place)-1]
+        if 'bloqj1' == place.lower():
+            print('es el bloque j')
+            id = place[len(place) - 2]
+
     else:
         print('es el bloque i')
         id = place[len(place)-2] + place[len(place)-1]
@@ -110,6 +118,12 @@ def location():
         end = json.load(destination)
 
     return jsonify({"response": "200", "location": (start), "destination": (end)})
+
+
+@app.route('/x', methods=['POST'])
+def x():
+    print(request.json)
+    return jsonify({"response": "200"})
 
 
 if __name__ == '__main__':
