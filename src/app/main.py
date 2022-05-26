@@ -77,7 +77,7 @@ def destination():
     if 'bloq' in place.lower():
         print('no es el bloque i')
         id = place[len(place)-1]
-        if 'bloqj1' == place.lower():
+        if 'bloqj1' == place.lower() or 'bloqg' in place.lower():
             print('es el bloque j')
             id = place[len(place) - 2]
 
