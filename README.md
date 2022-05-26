@@ -41,4 +41,4 @@ Peter assistant is a virtual assistant that you can ask what class or meeting yo
   * requirements.txt
   * reordering code
   * basic server created
-  * frontend interface develop started in the next [repository](https://github.com/No-Invita/Final-Project-OOP)
+  * frontend interface develop started in the next [repository](https://github.com/No-Invita/Peter-assistant-frontend)
