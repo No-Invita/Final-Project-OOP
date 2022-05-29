@@ -62,6 +62,7 @@ def event():
 @app.route('/destination')
 def getdestination():
     print(request.json)
+    p = request.args[id]
     data = request.json
     place = data['destination']
     id = ''
@@ -91,6 +92,7 @@ def getdestination():
 def destination():
     print("haciendo post")
     print(request.json)
+    p = request.json['id']
     data = request.json
     place = data['destination']
     id = ''
@@ -115,7 +117,7 @@ def destination():
                 print(row)
                 cords.update({"latitude": row[1], "longitude": row[2]})
                 go = row
-    with open('src/data/destination.json', 'w') as destination:
+    with open(f'src/data/{p}destination.json', 'w') as destination:
         json.dump(cords, destination)
     return jsonify({"response": "200", "message": "Quieres ir al bloque " + id, "bloque": go, "cords": cords})
 
@@ -133,11 +135,13 @@ def get_location():
 
 @ app.route('/location')
 def location():
+    args = request.args
+    id = args['id']
     start = ''
     end = ''
     with open('src/data/location.json', 'r') as data:
         start = json.load(data)
-    with open('src/data/destination.json', 'r')as destination:
+    with open(f'src/data/{id}destination.json', 'r')as destination:
         end = json.load(destination)
 
     return jsonify({"response": "200", "location": (start), "destination": (end)})
