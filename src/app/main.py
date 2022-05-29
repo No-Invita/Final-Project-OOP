@@ -1,3 +1,4 @@
+import datetime
 from src.app.schedule import Calendar
 from src.app.peter_assistant import PeterAssistant
 # from schedule import Calendar
@@ -36,6 +37,28 @@ def index():
     return jsonify(events)
 
 
+@app.route('/event', methods=['POST'])
+def event():
+    events = request.json['events']
+    clases = []
+    for event in events:
+        start = str(event['start'].get(
+            'dateTime', event['start'].get('date')).split('T')[1].split("-")[0])
+        end = str(event['end'].get('dateTime', event['end'].get(
+            'date')).split('T')[1].split("-")[0])
+        end_time = datetime.datetime.strptime(end, '%X').time()
+        clase = {
+            'end': end,
+            'start': start,
+            'summary': str(event['summary']),
+            'location': str(event['location']),
+            'description': str(event['description']),
+        }
+        clases.append(clase)
+    return jsonify(clases)
+
+
+@app.route('/event/<id>', methods=['GET'])
 @app.route('/destination')
 def getdestination():
     print(request.json)
