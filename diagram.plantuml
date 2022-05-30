@@ -1,13 +1,12 @@
 @startuml
 
 class PeterAssistant{
-    list: settings
-    void get_indications() 
-    void greet()
-    void init_service()
-    void listen()
-    void show_block()
-    void speak()
+    Calendar: calendario
+    Shower: shower
+    dict get_event()
+    dict get_destination()
+    dict get_location()
+    dict post_location()
 }
 PeterAssistant o-- Service : Agregation
 abstract class Service{
@@ -28,38 +27,27 @@ class Event{
     string start 
     string end 
     string summary 
-    string location 
-    string kind 
-    string display()
+    string location
+    dict get_clase()
 }
 Calendar "1" *--  "Many" Event:Composition
-class Map{
-    list: blocks
-    void get_user_location()
-    Block get_block()
-    void get_blocks()
 
-}
-Service <|-- Map
 class Block{
     string name
     string latitude
     string longitude
     string description
     list: pictures
-    string display()
-    list get_location()
+    dict get_block()
 }
 
-Map "1" *-- "many" Block : Composition
+Shower "1" *-- "many" Block : Composition
 class Shower{
-    list: events
     list: blocks
-    void render()
-    void display_events()
-    void display_blocks()
+    dict get_destination()
+    dict get_location()
+    dict post_location()
+
 }
 Service <|-- Shower : Extension
-Shower o-- Event: Agregation 
-Shower o-- Block
 @enduml
