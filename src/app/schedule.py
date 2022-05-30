@@ -1,6 +1,8 @@
 import datetime
-# from services import Services
+from src.app.event import Event
 from src.app.services import Services
+# from event import Event
+# from services import Services
 
 
 class Calendar(Services):
@@ -24,17 +26,9 @@ class Calendar(Services):
                 self.end = str(event['end'].get('dateTime', event['end'].get(
                     'date')).split('T')[1].split("-")[0])
                 end_time = datetime.datetime.strptime(self.end, '%X').time()
-                clase = {
-                    'end': self.end,
-                    'start': self.start,
-                    'summary': str(event['summary']),
-                    'location': str(event['location']),
-                    'description': str(event['description']),
-                }
-                clases.append(clase)
-                if self.current_time < end_time:
-                    self.summary = event['summary']
-                    print(self.start, self.end,
-                          self.summary)
+                clase = Event(self.end, self.start, str(event['summary']), str(
+                    event['location']), str(event['description']))
+
+                clases.append(clase.get_clase())
 
         return clases
