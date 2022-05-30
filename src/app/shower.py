@@ -19,15 +19,6 @@ class Shower (Services):
                 self.blocks.append(block)
             print(self.blocks[1].get_block()['name'])
 
-    def render(self):
-        pass
-
-    def display_events(self):
-        pass
-
-    def dispaly_blocks():
-        pass
-
     def get_destination(self, data):
         p = data['id']
         place = data['destination']

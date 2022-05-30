@@ -1,11 +1,4 @@
 import datetime
-import os.path
-import pickle
-from pprint import pprint
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport import requests
-import pytz
 # from services import Services
 from src.app.services import Services
 
@@ -15,31 +8,6 @@ class Calendar(Services):
     scopes = ['https://www.googleapis.com/auth/calendar']
     credentials_file = 'credentials.json'
     result = ""
-
-    def __init__(self):
-        self.get_date()
-        self.find = False
-
-    def getcalendarservices(self):
-
-        creds = None
-        if os.path.exists('token.pickle'):
-            with open('token.pickle', 'rb') as token:
-                creds = pickle.load(token)
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(requests.Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    "credentials.json", scopes=self.scopes)
-                creds = flow.run_local_server(port=0)
-
-            with open('token.pickle', 'wb') as token:
-                pickle.dump(creds, token)
-
-        service = build('calendar', 'v3', credentials=creds)
-        self.service = service
-        return service
 
     def get_date(self):
         self.today = datetime.date.today()
@@ -68,20 +36,5 @@ class Calendar(Services):
                     self.summary = event['summary']
                     print(self.start, self.end,
                           self.summary)
-                    self.find = True
-                else:
-                    self.find = False
 
         return clases
-
-    def is_available(self):
-        if self.getcalendarservices() != None:
-            return True
-        else:
-            return False
-
-    def startServices(self):
-        self.getcalendarservices()
-
-    def endService(self):
-        pass

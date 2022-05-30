@@ -16,12 +16,6 @@ class Block:
         self.longitude = longitude
         self.description = description
 
-    def dispaly(self, info) -> str:
-        pass
-
-    def get_location() -> list:
-        pass
-
     def get_block(self):
         return {'name': self.name, 'latitude': self.latitude, 'longitude': self.longitude, 'description': self.description}
 
