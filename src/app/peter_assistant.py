@@ -1,9 +1,9 @@
 
 
-# from app.schedule import Calendar
-# from app.shower import Shower
-from shower import Shower
-from schedule import Calendar
+from src.app.schedule import Calendar
+from src.app.shower import Shower
+# from shower import Shower
+# from schedule import Calendar
 
 
 class PeterAssistant:

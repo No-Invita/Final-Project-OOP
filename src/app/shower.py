@@ -1,8 +1,9 @@
 import csv
 import json
-# from app.block import Block
-from block import Block
-from services import Services
+from src.app.block import Block
+from src.app.services import Services
+# from block import Block
+# from services import Services
 
 
 class Shower (Services):
