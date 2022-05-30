@@ -6,8 +6,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport import requests
 import pytz
-# from services import Services
-from src.app.services import Services
+from services import Services
+# from src.app.services import Services
 
 
 class Calendar(Services):
@@ -45,18 +45,7 @@ class Calendar(Services):
         self.today = datetime.date.today()
         self.current_time = datetime.datetime.now().time()
 
-    def get_event(self, day, service):
-        start_date = datetime.datetime.combine(
-            day, datetime.datetime.min.time())
-        end_date = datetime.datetime.combine(day, datetime.datetime.max.time())
-        utc = pytz.UTC
-        start_date = start_date.astimezone(utc)
-        end_date = end_date.astimezone(utc)
-
-        result = service.events().list(calendarId='primary', timeMin=start_date.isoformat(), timeMax=end_date.isoformat(),
-                                       singleEvents=True,
-                                       orderBy='startTime').execute()
-        self.result = events = result.get('items', [])
+    def get_event(self, events):
         clases = []
         if not events:
             print('No tienes eventos por ahora')
