@@ -15,9 +15,6 @@ class PeterAssistant:
         self.shower = Shower()
         pass
 
-    def init_service():
-        pass
-
     def get_event(self, events):
         return self.calendario.get_event(events)
 
@@ -29,9 +26,3 @@ class PeterAssistant:
 
     def post_location(self, data):
         return self.shower.post_location(data)
-
-    def show_block():
-        pass
-
-    def get_indications():
-        pass
