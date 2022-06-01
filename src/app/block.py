@@ -8,7 +8,6 @@ class Block:
     latitude = ""
     longitude = ""
     description = ""
-    pictures = [""]
 
     def __init__(self, name, latitude, longitude, description) -> None:
         self.name = name
@@ -16,8 +15,11 @@ class Block:
         self.longitude = longitude
         self.description = description
 
+        # Return a dictionary with the block's information:
+
     def get_block(self):
         return {'name': self.name, 'latitude': self.latitude, 'longitude': self.longitude, 'description': self.description}
 
+        # Return a string with the block's information:
     def __str__(self):
         return str({'name': self.name, 'latitude': self.latitude, 'longitude': self.longitude, 'description': self.description})

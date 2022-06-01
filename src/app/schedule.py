@@ -6,15 +6,12 @@ from src.app.services import Services
 
 
 class Calendar(Services):
-
-    scopes = ['https://www.googleapis.com/auth/calendar']
-    credentials_file = 'credentials.json'
-    result = ""
-
+    # gets the current date and time
     def get_date(self):
         self.today = datetime.date.today()
         self.current_time = datetime.datetime.now().time()
 
+        # processes the events and returns the ones that are happening today and have the right format
     def get_event(self, events):
         clases = []
         if not events:

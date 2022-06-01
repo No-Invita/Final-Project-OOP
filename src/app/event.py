@@ -12,5 +12,6 @@ class Event:
         self.location = location
         self.description = description
 
+    # Returns a dictionary with the event
     def get_clase(self):
         return {'end': self.end, 'start': self.start, 'summary': self.summary, 'location': self.location, 'description': self.description}

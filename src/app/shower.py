@@ -7,8 +7,6 @@ from src.app.services import Services
 
 
 class Shower (Services):
-
-    events = [""]
     blocks = []
 
     def __init__(self):
@@ -19,6 +17,7 @@ class Shower (Services):
                 self.blocks.append(block)
             print(self.blocks[1].get_block()['name'])
 
+     # receives the data from the user and returns the location of the block
     def get_destination(self, data):
         p = data['id']
         place = data['destination']
@@ -46,6 +45,7 @@ class Shower (Services):
             json.dump(cords, destination)
         return {"response": "200", "message": "Quieres ir al bloque " + id, "bloque": go.get_block(), "cords": cords}
 
+	# return the location and destination from the user	
     def get_location(self, args):
         id = args['id']
         start = ''
@@ -56,6 +56,7 @@ class Shower (Services):
             end = json.load(destination)
         return {"response": "200", "location": (start), "destination": (end)}
 
+	# receives from the user the block and returns the location of the block
     def post_location(self, data):
         with open('src/data/location.json', 'w') as location:
             location.write(str(data).replace("'", '"'))
