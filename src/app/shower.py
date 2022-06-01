@@ -28,7 +28,7 @@ class Shower (Services):
         if 'bloq' in place.lower():
             print('no es el bloque i')
             id = place[len(place)-1]
-            if 'bloqj1' == place.lower() or 'bloqg' in place.lower():
+            if 'bloqj1' == place.lower() or 'bloqg1' in place.lower() or 'bloqj2' in place.lower() or 'bloqg2' in place.lower():
                 print('es el bloque j')
                 id = place[len(place) - 2]
         else:
@@ -45,7 +45,7 @@ class Shower (Services):
             json.dump(cords, destination)
         return {"response": "200", "message": "Quieres ir al bloque " + id, "bloque": go.get_block(), "cords": cords}
 
-	# return the location and destination from the user	
+        # return the location and destination from the user
     def get_location(self, args):
         id = args['id']
         start = ''
@@ -56,7 +56,7 @@ class Shower (Services):
             end = json.load(destination)
         return {"response": "200", "location": (start), "destination": (end)}
 
-	# receives from the user the block and returns the location of the block
+        # receives from the user the block and returns the location of the block
     def post_location(self, data):
         with open('src/data/location.json', 'w') as location:
             location.write(str(data).replace("'", '"'))
